@@ -32,7 +32,45 @@ const createCourse = asyncHandler(async (req, res) => {
   res.status(201).json(course);
 });
 
+// @desc Update a course
+// route PUT /api/courses/:id
+// @access Private
+const updateCourse = asyncHandler(async (req, res) => {
+  const course = await Course.findById(req.params.id);
+
+  if (!course) {
+    res.status(400);
+    throw new Error("Course does not exist!");
+  }
+
+  const updatedCourse = await Course.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json(updatedCourse);
+});
+
+// @desc Delete a course
+// route DELETE /api/courses/:id
+// @access Private
+const deleteCourse = asyncHandler(async (req, res) => {
+  const course = await Course.findByIdAndDelete(req.params.id);
+
+  if (!course) {
+    res.status(400);
+    throw new Error("Course does not exist!");
+  }
+
+  res.status(200).json(course);
+});
+
 module.exports = {
   createCourse,
   getCourses,
+  deleteCourse,
+  updateCourse,
 };
