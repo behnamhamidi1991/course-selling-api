@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 
 const Course = require("../models/courseModel");
+const User = require("../controllers/userController");
 
 // @desc Get all courses
 // route GET /api/courses
@@ -23,6 +24,7 @@ const createCourse = asyncHandler(async (req, res) => {
   }
 
   const course = await Course.create({
+    user: req.user.id,
     title: req.body.title,
     description: req.body.description,
     studentsNum: req.body.studentsNum,
