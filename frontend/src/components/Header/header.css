@@ -1,0 +1,62 @@
+header {
+  color: rgb(36, 54, 146);
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  border: none;
+  padding: 0 5%;
+  box-shadow: 1px 2px 1px 0 (rgba(0, 0, 0, 0.1));
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+header .logo .logoText {
+  color: rgb(36, 54, 146);
+}
+
+header .navLinks {
+  display: flex;
+  gap: 50px;
+  font-weight: 500;
+  font-size: 14px;
+  align-items: center;
+}
+
+header .navLinks li .navItems {
+  color: rgb(36, 54, 146);
+}
+
+header .navLinks li .navItems:hover {
+  color: rgb(96, 209, 244);
+}
+
+header .user {
+  display: flex;
+  color: rgb(36, 54, 146);
+
+  gap: 20px;
+  align-items: center;
+}
+
+header .user li {
+  display: flex;
+  gap: 5px;
+}
+
+header .user .userLinks {
+  color: rgb(36, 54, 146);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+header .user .userLinks:hover {
+  color: rgb(96, 209, 244);
+}
