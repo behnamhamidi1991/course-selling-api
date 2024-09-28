@@ -52,6 +52,56 @@ const generateToken = (id) => {
   expiresIn: "30d";
 };
 
+// @desc    Register new user
+// @route   POST /api/users/:id
+// @access  Admin Privilage
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  // Check if user exists
+  if (!user) {
+    res.status(400);
+    throw new Error("User does not exist");
+  }
+
+  res.status(200).json(user);
+});
+
+// @desc    Get all users
+// @route   GET api/users
+// @access  Admin Privilage
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+
+  if (users.length === 0) {
+    return res.status(404).json({ message: "There are no users!" });
+  }
+
+  res.status(200).json(users);
+});
+
+// @desc    Update user
+// @route   PUT api/users
+// @access  Private
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  // Check if user exists
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+
+  res.status(200).json(updatedUser);
+});
+
 module.exports = {
   registerUser,
+  getUsers,
+  deleteUser,
+  updateUser,
 };
